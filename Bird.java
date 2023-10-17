@@ -32,10 +32,24 @@ public class Bird extends Player
         this.setImage(new GreenfootImage(nomor+".png"));
         getImage().scale(75,75);
     }
-    
+    public class Brd extends Behavior{
+        public void location(){
+            int gravity = 2;
+            setLocation(getX(), getY() + gravity);
+        }
+        public void jump(){
+            if(Greenfoot.isKeyDown("space")){
+                setLocation(getX(), getY()-6);
+                Greenfoot.playSound("bird.mp3");
+            }
+        }
+    }
+    Brd brd = new Brd();
     public void act()
     {
         animate();
+        brd.jump();
+        brd.location();
         super.act();
     }
 }

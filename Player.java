@@ -12,24 +12,26 @@ public class Player extends Actor
      * Act - do whatever the player wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int gravity = 2;
     boolean alive = true;
     boolean across = false;
     boolean addscore = false;
     public void act()
-    {
-        this.setLocation(this.getX(), this.getY()+gravity);
-        if(Greenfoot.isKeyDown("space")){
-            this.setLocation(this.getX(), this.getY()-6);
-        }
-        if(Touching() || isAtEdge()){
-            getWorld().addObject(new Game_over(), 500, 250);
-            getWorld().removeObject(this);
-        }
+    {   
+        dead();
         if(!addscore && across && alive){
             Score.add(1);
         }
         addscore = across;
+    }
+    public abstract class Behavior{
+        public abstract void location();
+        public abstract void jump();
+    }
+    public void dead(){
+        if(Touching() || isAtEdge()){
+            getWorld().addObject(new Game_over(), 500, 250);
+            getWorld().removeObject(this);
+        }
     }
     public boolean Touching(){
         across = false;

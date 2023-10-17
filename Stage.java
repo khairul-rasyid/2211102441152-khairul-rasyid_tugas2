@@ -17,9 +17,10 @@ public class Stage extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 500, 1);
-        setPaintOrder(Game_over.class, Pipe.class, Bird.class, Cloud.class); 
+        setPaintOrder(Game_over.class, Pipe.class, Bird.class, Rocket.class, Cloud.class); 
         
-        addObject(new Bird(), 150, 250);
+        //addObject(new Bird(), 150, 250);
+        addObject(new Rocket(), 150, 300);
         
         addObject(new Cloud(), 800, 250);
         addObject(new Cloud(), 123, 74);
